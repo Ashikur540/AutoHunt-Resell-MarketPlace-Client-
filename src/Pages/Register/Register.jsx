@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 const Register = () => {
+    // contexts
+    const { createUser } = useContext(AuthContext)
+
+    // hooks
+
+
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const hanldeSignin = (data) => {
+    const hanldeSignup = (data) => {
         console.log(data);
+        const { email, password, fullname, account } = data;
+        createUser(email, password)
+            .then(result => {
+                const user = result.user
+                console.log(user);
+                toast.success("Account creation successfull")
+                // console.log("SUER INFO", userInfo);
+
+            })
+
+            .catch(err => {
+                console.error(err.message);
+            })
+
     }
     return (
         <>
@@ -15,7 +37,7 @@ const Register = () => {
                         Get started today
                     </h1>
                     <form action="" className="mt-6 mb-0 space-y-4 bg-neutral rounded-lg p-8 shadow-2xl"
-                        onSubmit={handleSubmit(hanldeSignin)}
+                        onSubmit={handleSubmit(hanldeSignup)}
                     >
                         <p className="text-lg font-medium">Create your new account</p>
 
