@@ -8,7 +8,7 @@ module.exports = {
       {
         AutoHuntDark: {
 
-          "primary": "#942CE5",
+          "primary": "#4D2DCA",
 
           "secondary": "#828DF8",
 

@@ -6,9 +6,10 @@ export const Navbar = () => {
 
     const menuItems = <>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/register">Login</Link></li>
-        <li><Link to="/login">Logout</Link></li>
         <li><Link to="/blogs">Blogs</Link></li>
+        <li><Link>Logout</Link></li>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/register">register</Link></li>
     </>
 
     return (
