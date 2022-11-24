@@ -5,29 +5,39 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 const Register = () => {
     // contexts
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUser } = useContext(AuthContext)
 
     // hooks
 
 
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    const hanldeSignup = (data) => {
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
+    const handleSignup = (data) => {
         console.log(data);
-        const { email, password, fullname, account } = data;
+        const { email, password, fullName } = data;
         createUser(email, password)
             .then(result => {
                 const user = result.user
                 console.log(user);
-                toast.success("Account creation successfull")
-                // console.log("SUER INFO", userInfo);
+                const profile = {
+                    displayName: fullName
+                }
+                console.log(profile);
+                console.log("SUER INFO", profile);
+                updateUser(profile)
+                    .then(() => {
+                        // saveUser(fullname, email)
 
+                    })
+                    .catch(err => console.error(err.message));
             })
 
             .catch(err => {
                 console.error(err.message);
             })
-
+        toast.success('Account creation succesfull')
+        reset();
     }
     return (
         <>
@@ -37,7 +47,7 @@ const Register = () => {
                         Get started today
                     </h1>
                     <form action="" className="mt-6 mb-0 space-y-4 bg-neutral rounded-lg p-8 shadow-2xl"
-                        onSubmit={handleSubmit(hanldeSignup)}
+                        onSubmit={handleSubmit(handleSignup)}
                     >
                         <p className="text-lg font-medium">Create your new account</p>
 

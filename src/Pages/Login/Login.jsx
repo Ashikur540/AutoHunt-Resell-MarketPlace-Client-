@@ -16,6 +16,9 @@ const Login = () => {
                 console.log(user);
                 toast.success("Login in success")
             })
+            .catch(err => {
+                toast.error(err.message)
+            })
 
     }
 
