@@ -15,25 +15,19 @@ export const Navbar = () => {
     }
 
 
-
-
-
-
-
-
-
-
     const menuItems = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/blogs">Blogs</Link></li>
+        <li><Link to="/cars">Cars</Link></li>
 
         {
-            user?.uid && <>
-                <li><Link to="/login">Login</Link></li>
+            user?.email || <>
+                <li><button className="btn-primary ring"><Link to="/register">register</Link></button></li>
+                <li><button className="btn-neutral ring"><Link to="/login">Login</Link></button></li>
 
             </>
         }
-        <li><Link to="/register">register</Link></li>
+
     </>
 
     return (
@@ -50,28 +44,34 @@ export const Navbar = () => {
                     </div>
                     <Link className="btn btn-ghost normal-case text-xl w-24 pl-8"><img src={logo} alt="logo" className="w-full" /></Link>
                 </div>
-                <div className="navbar-center hidden lg:flex md:mx-auto">
-                    <ul className="menu menu-horizontal p-0">
+                <div className="navbar-center hidden lg:flex text-center md:pr-10">
+                    <ul className="menu menu-horizontal p-0 space-x-4">
                         {menuItems}
                     </ul>
                 </div>
                 <div className="dropdown dropdown-end ml-auto">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img src="https://placeimg.com/80/80/people" />
+                            {
+                                user?.uid ? <img src={user?.photoURL} alt="profilePic" />
+                                    :
+                                    <img src="https://cdn-icons-png.flaticon.com/512/3899/3899618.png" alt="profilePic" />
+                            }
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                        <li>
-                            <Link className="justify-between" onClick={() => {
-                                toast('This function is under construction!', {
-                                    icon: '🛠',
-                                });
-                            }}>
-                                Profile
-                                <span className="badge">New</span>
-                            </Link>
-                        </li>
+                        {
+                            user?.uid && <li>
+                                <Link className="justify-between" onClick={() => {
+                                    toast('This function is under construction!', {
+                                        icon: '🛠',
+                                    });
+                                }}>
+                                    Profile
+                                    <span className="badge">New</span>
+                                </Link>
+                            </li>
+                        }
                         <li><Link to="/dashboard">Dashboard</Link></li>
                         {
                             user?.uid && <li><Link onClick={handleLogout}>Logout</Link></li>

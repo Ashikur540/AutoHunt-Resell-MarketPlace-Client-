@@ -15,30 +15,75 @@ const Register = () => {
 
     const handleSignup = (data) => {
         console.log(data);
-        const { email, password, fullName } = data;
-        createUser(email, password)
-            .then(result => {
-                const user = result.user
-                console.log(user);
-                const profile = {
-                    displayName: fullName
-                }
-                console.log(profile);
-                console.log("SUER INFO", profile);
-                updateUser(profile)
-                    .then(() => {
-                        // saveUser(fullname, email)
+        const { email, password, fullName, account } = data;
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        console.log(image);
 
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_imgbb_key}`;
+
+        fetch(url, {
+            method: "post",
+            body: formData
+        }).then(res => res.json())
+            .then(imagedata => {
+                // get  the image url
+                console.log(imagedata.data.display_url);
+                let img_url = imagedata.data.display_url
+                // create user
+                createUser(email, password)
+                    .then(result => {
+                        const user = result.user
+                        console.log(user);
+                        const profile = {
+                            displayName: fullName,
+                            photoURL: img_url,
+                        }
+
+                        console.log("UsER INFO", profile);
+
+                        // update profile
+                        updateUser(profile)
+                            .then(() => {
+                                saveUser(fullName, email, account)
+                                toast.success('Account creation succesfull');
+                                reset();
+                            })
+                            .catch(err => console.error(err.message));
                     })
-                    .catch(err => console.error(err.message));
-            })
 
-            .catch(err => {
-                console.error(err.message);
+                    .catch(err => {
+                        console.error(err.message);
+                    })
             })
-        toast.success('Account creation succesfull')
-        reset();
+            .catch(err => console.log(err.message))
+
+
+
     }
+
+
+    const saveUser = (fullName, email, account) => {
+        const userInfo = {
+            fullName, email, account
+        }
+
+        fetch(`${process.env.REACT_APP_Base_URL}/user`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }
+
+
+
+
+
     return (
         <>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 min-h-screen">
@@ -70,6 +115,15 @@ const Register = () => {
                                     </svg>
 
                                 </span>
+                            </div>
+                        </div>
+                        <div>
+                            <label htmlFor="FullName" className="text-sm font-medium">Upload image</label>
+
+                            <div className="relative mt-1">
+                                <input className="block w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none h-12" type="file"
+                                    {...register("image", { required: "image is required" })}
+                                />
                             </div>
                         </div>
                         <div>

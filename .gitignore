@@ -7,7 +7,8 @@
 
 # testing
 /coverage
-
+cars.json
+Category.json
 # production
 /build
 
