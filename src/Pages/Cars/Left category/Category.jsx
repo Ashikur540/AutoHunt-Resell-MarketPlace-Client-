@@ -16,7 +16,8 @@ const Category = () => {
         .then(response => {
             // console.log(response);
             setCategories(response.data)
-        });
+        })
+        .catch(err => console.log(err.message))
     return (
         <section id="car-category">
             <div className="flex flex-col mt-10 text-left justify-center items-start bg-base-100 rounded-lg">

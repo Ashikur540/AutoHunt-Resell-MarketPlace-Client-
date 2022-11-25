@@ -34,6 +34,7 @@ const RightCars = () => {
             {
                 carInfo && <BuyModal
                     carInfo={carInfo}
+                    refetch={refetch}
                     setCarInfo={setCarInfo}
                 />
             }

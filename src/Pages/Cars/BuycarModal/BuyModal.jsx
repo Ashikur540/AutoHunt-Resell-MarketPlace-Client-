@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from "react-hot-toast";
 import { AuthContext } from '../../../Contexts/AuthProvider';
-const BuyModal = ({ carInfo, setCarInfo }) => {
+const BuyModal = ({ carInfo, setCarInfo, refetch }) => {
     const { modelName, _id, resellPrice, usageTime, originalPrice, location, image_url, description, selllerContact, condition } = carInfo;
     const { user } = useContext(AuthContext);
     // console.log(carInfo);
 
-    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset, } = useForm();
 
     const handlePurchase = (data) => {
         // console.log(data);
@@ -24,7 +24,8 @@ const BuyModal = ({ carInfo, setCarInfo }) => {
             carModelName: modelName,
             buyerImage: user?.photoURL,
             purchaseTime: time,
-            meetingPlace
+            meetingPlace,
+            carID: _id
         }
         console.log(purchaseInfo);
         fetch(`${process.env.REACT_APP_Base_URL}/purchase`, {
@@ -42,6 +43,7 @@ const BuyModal = ({ carInfo, setCarInfo }) => {
                     toast.success('successfully added to purchaseList')
                     setCarInfo(null);
                     reset();
+                    refetch();
 
                 }
 

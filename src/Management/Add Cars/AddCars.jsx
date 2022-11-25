@@ -45,7 +45,8 @@ const AddCars = () => {
                     sellerEmail,
                     selllerContact,
                     postedDate: dateStr,
-                    usageTime
+                    usageTime,
+                    available: 'instock'
 
                 }
 
@@ -103,7 +104,7 @@ const AddCars = () => {
                                 </div>
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                                     <div><label className="" htmlFor="name">Car Image</label>
-                                        <input type="file" className="file-input bg-white file-input-bordered file-input-secondary w-full " {...register("image")} /></div>
+                                        <input type="file" className="file-input bg-white text-slate-500 file-input-bordered file-input-secondary w-full " {...register("image")} /></div>
                                     <div>
                                         <label htmlFor="Condition">Condition</label>
                                         <select className="select select-bordered w-full max-w-xs" {...register("condition")}>
