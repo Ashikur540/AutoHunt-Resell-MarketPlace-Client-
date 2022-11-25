@@ -12,6 +12,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import DashboardLayout from "./Main/Dashboard/DashboardLayout";
 import Main from "./Main/Main";
+import { PrivateRoute } from "./Private/PrivateRoute";
 export const routes = createBrowserRouter([
     {
         path: '/',
@@ -38,7 +39,7 @@ export const routes = createBrowserRouter([
 
                     {
                         path: "/cars/:category_name",
-                        element: <RightCars />
+                        element: <PrivateRoute><RightCars /></PrivateRoute>
                     },
                 ]
             },

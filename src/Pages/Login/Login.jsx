@@ -2,11 +2,28 @@ import { GoogleAuthProvider } from '@firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { Link } from 'react-router-dom';
+import { useLocation } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../Contexts/AuthProvider';
 const Login = () => {
     const { loginUser, googleSignin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+
+
+    // routing part
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/"
+
+    // jodi pai taile navigate korbo
+    // if (token) navigate(from, { replace: true })
+
+
+
+
+
+
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const hanldeSignin = (data) => {
         console.log(data);
@@ -15,7 +32,8 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success("Login in success")
+                toast.success("Login in success");
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 toast.error(err.message)
@@ -32,7 +50,7 @@ const Login = () => {
             const account = 'buyer'
             saveUser(user?.displayName, user?.email, account)
             toast.success('login successfull')
-            // navigate(from, { replace: true })
+            navigate(from, { replace: true })
         })
             .catch(error => {
                 console.error(error);

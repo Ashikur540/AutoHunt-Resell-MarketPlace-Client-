@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router';
 import { Spinner } from "../../../Components/Spinner/Spinner";
+import { AuthContext } from '../../../Contexts/AuthProvider';
 import BuyModal from '../BuycarModal/BuyModal';
 import CarsCard from '../Cars Card/CarsCard';
 const RightCars = () => {
     const [carInfo, setCarInfo] = useState(null)
     const router = useParams();
+    const { user } = useContext(AuthContext)
     // console.log(router);
     const { category_name } = router;
     const { data: availableCars = [], refetch, isLoading } = useQuery({
@@ -32,7 +34,7 @@ const RightCars = () => {
                 </div>
             </div>
             {
-                carInfo && <BuyModal
+                carInfo && user?.uid && <BuyModal
                     carInfo={carInfo}
                     refetch={refetch}
                     setCarInfo={setCarInfo}
