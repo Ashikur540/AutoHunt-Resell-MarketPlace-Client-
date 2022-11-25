@@ -27,10 +27,13 @@ const CarsCard = ({ car }) => {
                         <p className="text-slate-50">Resel Price:<span className="text-accent"> ${resellPrice}</span></p>
                         <p className="text-slate-50">Original:<span className="text-accent"> ${originalPrice}</span></p>
                     </div>
-                    <p>{description?.length > 100 ? description.slice(0, 120) + "...." : description}</p>
+                    <p>{description?.length > 100 ? description.slice(0, 90) + "...." : description}</p>
                     <div className="card-actions justify-end">
-                        <div className="badge badge-outline">Age: {usageTime} yrs</div>
+                        <div className="badge badge-outline">Usage: {usageTime}</div>
                         <div className="badge badge-outline">{location}</div>
+                    </div>
+                    <div className="card-actions justify-end mt-3">
+                        <button className="btn btn-primary">Buy Now</button>
                     </div>
                 </div>
             </div>

@@ -21,9 +21,9 @@ export const Navbar = () => {
         <li><Link to="/cars">Cars</Link></li>
 
         {
-            user?.email || <>
-                <li><button className="btn-primary ring"><Link to="/register">register</Link></button></li>
-                <li><button className="btn-neutral ring"><Link to="/login">Login</Link></button></li>
+            (user?.displayName && user?.email) || <>
+                <li><button className="btn btn-primary "><Link to="/register">register</Link></button></li>
+                <li><button className="btn btn-outline rounded-lg"><Link to="/login">Login</Link></button></li>
 
             </>
         }
@@ -42,7 +42,7 @@ export const Navbar = () => {
                             {menuItems}
                         </ul>
                     </div>
-                    <Link className="btn btn-ghost normal-case text-xl w-24 pl-8"><img src={logo} alt="logo" className="w-full" /></Link>
+                    <Link to='/' className=" text-xl w-24 pl-8"><img src={logo} alt="logo" className="w-full" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex text-center md:pr-10">
                     <ul className="menu menu-horizontal p-0 space-x-4">

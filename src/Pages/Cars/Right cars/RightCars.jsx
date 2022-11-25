@@ -10,7 +10,7 @@ const RightCars = () => {
     // console.log(router);
     const { category_name } = router;
     const { data: availableCars = [], refetch, isLoading } = useQuery({
-        queryKey: ['category_name', "availableCars"],
+        queryKey: [category_name, "availableCars"],
         queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/cars?category_name=${category_name}`)
             .then(res => res.json())
     })
