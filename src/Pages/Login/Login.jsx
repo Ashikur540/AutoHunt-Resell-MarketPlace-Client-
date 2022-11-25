@@ -1,11 +1,12 @@
+import { GoogleAuthProvider } from '@firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 const Login = () => {
-    const { loginUser } = useContext(AuthContext);
-
+    const { loginUser, googleSignin } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const hanldeSignin = (data) => {
         console.log(data);
@@ -22,6 +23,40 @@ const Login = () => {
 
     }
 
+    const handleGoogleSignin = () => {
+
+        googleSignin(googleProvider).then(result => {
+            const user = result.user;
+            console.log(user);
+            // window.location.reload();
+            const account = 'buyer'
+            saveUser(user?.displayName, user?.email, account)
+            toast.success('login successfull')
+            // navigate(from, { replace: true })
+        })
+            .catch(error => {
+                console.error(error);
+                toast.error(error.message, {
+                    position: "top-center"
+                })
+            })
+    }
+
+    const saveUser = (fullName, email, account) => {
+        const userInfo = {
+            fullName, email, account
+        }
+
+        fetch(`${process.env.REACT_APP_Base_URL}/user`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+    }
     return (
         <>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 min-h-screen">
@@ -109,6 +144,14 @@ const Login = () => {
                             className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
                         >
                             Sign in
+                        </button>
+                        <button
+                            type="submit"
+                            className="block w-full rounded-lg bg-neutral border-2 border-slate-500 px-5 py-3 text-sm font-medium text-white"
+                            onClick={handleGoogleSignin}
+
+                        >
+                            🌍 continue with google
                         </button>
 
                         <p className="text-center text-sm text-gray-500">
