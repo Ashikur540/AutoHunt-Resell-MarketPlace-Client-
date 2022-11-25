@@ -42,6 +42,7 @@ const BuyModal = ({ carInfo, setCarInfo }) => {
                     toast.success('successfully added to purchaseList')
                     setCarInfo(null);
                     reset();
+
                 }
 
             })

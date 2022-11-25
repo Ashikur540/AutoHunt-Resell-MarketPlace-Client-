@@ -7,7 +7,7 @@ const CarsCard = ({ car, setCarInfo }) => {
     return (
         <>
             <div className="card w-auto bg-neutral shadow-xl">
-                <figure><img src={image_url} alt="car_image" /></figure>
+                <figure><img src={image_url} alt="car_image" className="h-[230px] w-full object-cover" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">
                         {modelName}
