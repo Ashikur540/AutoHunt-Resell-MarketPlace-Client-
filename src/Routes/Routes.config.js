@@ -1,10 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddCars from "../Management/Add Cars/AddCars";
+import AllUsers from "../Management/All Users/AllUsers";
+import Dashboard from "../Management/Dashboard/Dashboard";
+import ManageCars from "../Management/Manage Cars/ManageCars";
+import MyPurchaseList from "../Management/My Purchase List/MyPurchaseList";
 import AllCars from "../Pages/Cars/AllCars";
 import RightCars from "../Pages/Cars/Right cars/RightCars";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import DashboardLayout from "./Main/Dashboard/DashboardLayout";
 import Main from "./Main/Main";
 export const routes = createBrowserRouter([
     {
@@ -37,7 +43,33 @@ export const routes = createBrowserRouter([
                 ]
             },
 
+
+
         ]
 
-    }
+    },
+    {
+        path: "/dashboard",
+        element: <><DashboardLayout /><Dashboard /></>,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: "/dashboard",
+                element: <MyPurchaseList />,
+            },
+            {
+                path: "/dashboard/allusers",
+                element: <><AllUsers /> </>,
+            },
+            {
+                path: "/dashboard/addcars",
+                element: <><AddCars /> </>,
+            },
+            {
+                path: "/dashboard/managecars",
+                element: <><ManageCars /> </>,
+            },
+
+        ]
+    },
 ])
