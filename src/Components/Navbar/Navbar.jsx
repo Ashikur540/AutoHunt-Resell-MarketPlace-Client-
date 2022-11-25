@@ -19,14 +19,15 @@ export const Navbar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/blogs">Blogs</Link></li>
         <li><Link to="/cars">Cars</Link></li>
-
         {
-            (user?.displayName && user?.email) || <>
-                <li><button className="btn btn-primary "><Link to="/register">register</Link></button></li>
-                <li><button className="btn btn-outline rounded-lg"><Link to="/login">Login</Link></button></li>
-
+            user?.email || <><button className="btn btn-primary "><Link to="/register">register</Link></button>
+                <button className="btn btn-outline rounded-lg"><Link to="/login">Login</Link></button>
             </>
         }
+        {/* {
+            user?.email || <></>
+        } */}
+
 
     </>
 
@@ -63,12 +64,12 @@ export const Navbar = () => {
                         {
                             user?.uid && <li>
                                 <Link className="justify-between" onClick={() => {
-                                    toast('This function is under construction!', {
+                                    toast('This profile function is under construction!', {
                                         icon: '🛠',
                                     });
                                 }}>
-                                    Profile
-                                    <span className="badge">New</span>
+                                    {user?.uid ? user?.displayName : "no user found"}
+                                    <span className="badge">Admin</span>
                                 </Link>
                             </li>
                         }

@@ -1,19 +1,9 @@
 import React from 'react';
 
-const CarsCard = ({ car }) => {
-    // "category_name": "Tesla",
-    // "modelName": "Model S",
-    // "resellPrice": 288,
-    // "originalPrice": 480,
-    // "location": "Dhaka",
-    // "image_url": "https://i.ibb.co/q00s66n/model-S.jpg",
-    // "description": "Instantly connect with multi-device Bluetooth, or fast charge devices with wireless and 36-watt USB-C charging.A 22-speaker, 960-watt audio system with Active Road Noise Reduction offers immersive listening and studio-grade sound quality.With front and rear trunks and fold-flat seats you can fit your bike without taking the wheel off—and your luggage too.",
-    // "sellerName": "Millat rahman",
-    // "verified": true,
-    // "usageTime": 2,
-    // "postedDate": "24/11/2022"
+const CarsCard = ({ car, setCarInfo }) => {
 
-    const { modelName, _id, resellPrice, usageTime, originalPrice, location, image_url, description, condition } = car;
+
+    const { modelName, _id, resellPrice, usageTime, originalPrice, location, image_url, description, selllerContact, condition } = car;
     return (
         <>
             <div className="card w-auto bg-neutral shadow-xl">
@@ -32,11 +22,18 @@ const CarsCard = ({ car }) => {
                         <div className="badge badge-outline">Usage: {usageTime}</div>
                         <div className="badge badge-outline">{location}</div>
                     </div>
-                    <div className="card-actions justify-end mt-3">
-                        <button className="btn btn-primary">Buy Now</button>
+                    <div className="card-actions justify-between items-center mt-3">
+                        <p className="text-slate-50">☎:<span className="text-accent"> {selllerContact}</span></p>
+                        <label htmlFor="my-modal-3" className="btn btn-primary" onClick={() => { setCarInfo(car) }}>Buy Now</label>
                     </div>
                 </div>
+                {/* {
+                    carInfo && <BuyModal
+                        carInfo={carInfo}
+                    />
+                } */}
             </div>
+
         </>
     )
 }

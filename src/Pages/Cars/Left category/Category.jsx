@@ -23,7 +23,7 @@ const Category = () => {
                 {
                     categories?.map(category => <div className="font-semibold py-3 pl-6 my-1 w-full bg-neutral rounded-md hover:bg-primary hover:text-accent duration-150 "
                     >
-                        <NavLink to={`/cars/${category.category_name}`} key={category.id}>{category.category_name}</NavLink>
+                        <NavLink to={`/cars/${category.category_name}`} key={category._id}>{category.category_name}</NavLink>
                     </div>)
                 }
 

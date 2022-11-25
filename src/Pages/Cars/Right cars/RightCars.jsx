@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
+import { Spinner } from "../../../Components/Spinner/Spinner";
+import BuyModal from '../BuycarModal/BuyModal';
 import CarsCard from '../Cars Card/CarsCard';
-
-
 const RightCars = () => {
-
+    const [carInfo, setCarInfo] = useState(null)
     const router = useParams();
     // console.log(router);
     const { category_name } = router;
@@ -15,7 +15,7 @@ const RightCars = () => {
             .then(res => res.json())
     })
 
-
+    if (isLoading) return <Spinner />
     return (
         <div>
             <h1 className="text-2xl text-accent font-bold my-2 text-center ">Cars found {availableCars?.length}</h1>
@@ -25,12 +25,18 @@ const RightCars = () => {
                         availableCars?.map(car => <CarsCard
                             key={car._id}
                             car={car}
+                            setCarInfo={setCarInfo}
                         ></CarsCard>)
                     }
 
                 </div>
-
             </div>
+            {
+                carInfo && <BuyModal
+                    carInfo={carInfo}
+                    setCarInfo={setCarInfo}
+                />
+            }
         </div>
     )
 }

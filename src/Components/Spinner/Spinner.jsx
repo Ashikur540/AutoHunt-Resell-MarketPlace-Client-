@@ -1,8 +1,8 @@
 import React from "react"
 
-export default function Spinner() {
+export const Spinner = () => {
     return (
-        <>
+        <div className="mx-auto">
             {/*<!-- Component: Basic base sized 1/2 spinner  --> */}
             <svg
                 viewBox="0 0 24 24"
@@ -11,7 +11,7 @@ export default function Spinner() {
                 aria-labelledby="title-04a desc-04a"
                 aria-live="polite"
                 aria-busy="true"
-                className="w-10 h-10 animate animate-spin"
+                className="w-10 h-10 animate animate-spin mx-auto"
             >
                 <title id="title-04a">Icon title</title>
                 <desc id="desc-04a">Some desc</desc>
@@ -29,6 +29,6 @@ export default function Spinner() {
                 />
             </svg>
             {/*<!-- End Basic base sized 1/2 spinner  --> */}
-        </>
+        </div>
     )
 }
