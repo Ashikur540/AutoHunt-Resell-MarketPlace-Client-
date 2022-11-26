@@ -3,9 +3,11 @@ import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import logo from "../../Assets/Images/logo-white.png"
 import { AuthContext } from '../../Contexts/AuthProvider'
+import { useAdmin } from '../../Hooks/useAdmin'
 export const Navbar = () => {
 
-    const { logoutUser, user } = useContext(AuthContext)
+    const { logoutUser, user } = useContext(AuthContext);
+    const [isAdmin] = useAdmin(user?.email);
     const handleLogout = () => {
         logoutUser()
             .then(() => {
@@ -69,7 +71,10 @@ export const Navbar = () => {
                                     });
                                 }}>
                                     {user?.uid ? user?.displayName : "no user found"}
-                                    <span className="badge">Admin</span>
+                                    {
+                                        isAdmin && <span className="badge">Admin</span>
+                                    }
+
                                 </Link>
                             </li>
                         }

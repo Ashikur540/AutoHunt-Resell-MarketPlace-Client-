@@ -1,25 +1,51 @@
 import { useQuery } from "@tanstack/react-query";
 import React from 'react';
+import toast from "react-hot-toast";
+import { FaTrashAlt } from "react-icons/fa";
+import { Spinner } from "../../Components/Spinner/Spinner";
+
 const AllUsers = () => {
 
     // console.log(baseUrl);
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/users`).then(res => res.json())
     })
 
+    if (isLoading) return <Spinner></Spinner>
 
     const handleMakeAdmin = (id) => {
-        // fetch(`${baseUrl}/users/admin/${id}`, {
-        //     method: "PUT",
-        //     headers: {
-        //         authorization: `Bearer ${localStorage.getItem('doctors-token')}`
-        //     }
-        // }).then(res => res.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         refetch()
-        //     })
+
+        fetch(`${process.env.REACT_APP_Base_URL}/users/admin/${id}`, {
+            method: "PUT",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('autohunt-token')}`
+            }
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data);
+                alert('Upded')
+                refetch()
+            })
+    }
+    const hanleDelete = user => {
+        const { _id, fullName, } = user
+        // console.log(_id);
+        fetch(`${process.env.REACT_APP_Base_URL}/users/${_id}`, {
+            method: "DELETE",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("autohunt-token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data => data.deletedCount) {
+                    toast.success(`Successfully deleted ${fullName}`);
+                    refetch()
+                }
+            })
+            .catch(err => toast.error(err.message))
     }
     return (
         <div>
@@ -31,6 +57,7 @@ const AllUsers = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Account</th>
                             <th>Role</th>
                             <th>Action</th>
                         </tr>
@@ -43,15 +70,10 @@ const AllUsers = () => {
                                 <td>{user.fullName}</td>
                                 <td>{user.email}</td>
                                 <td>{user.account}</td>
-                                {/* <td>{user?.role !== "admin" && <button className="btn btn-xs btn-primary " onClick={() => handleMakeAdmin(user._id)}>Make Admin</button>}</td> */}
-                                <td className="dropdown dropdown-left">
-                                    <label tabIndex={0} className="btn btn-xs btn-accent m-1">:</label>
-                                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li><button className="btn  btn-error">Delete</button></li>
-                                        <li><button className="btn btn-outline  btn-secondary">Edit</button></li>
+                                <td></td>
+                                <td>{user?.role !== "admin" && <button className="btn btn-xs btn-primary " onClick={() => handleMakeAdmin(user._id)}>Make Admin</button>}</td>
+                                <td><button className="text-error" onClick={() => hanleDelete(user)}><FaTrashAlt /></button></td>
 
-                                    </ul>
-                                </td>
                             </tr>)
                         }
                     </tbody>

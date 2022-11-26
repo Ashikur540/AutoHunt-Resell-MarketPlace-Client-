@@ -63,7 +63,7 @@ const ManageCars = () => {
                                 <td>{singleCar?.modelName}</td>
                                 <td>{singleCar?.resellPrice}</td>
                                 <td>{singleCar?.sellerEmail ? singleCar?.sellerEmail : 'not privided'}</td>
-                                <td>{singleCar?.sellerContact}</td>
+                                <td>{singleCar?.selllerContact}</td>
                                 <td>{singleCar?.available}</td>
                                 <td><button className="text-error" onClick={() => hanleDelete(singleCar)}><FaTrashAlt /></button></td>
 

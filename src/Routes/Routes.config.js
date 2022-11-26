@@ -11,6 +11,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import { AdminRoute } from "./Admin Route/AdminRoute";
 import DashboardLayout from "./Main/Dashboard/DashboardLayout";
 import Main from "./Main/Main";
 import { PrivateRoute } from "./Private/PrivateRoute";
@@ -65,15 +66,15 @@ export const routes = createBrowserRouter([
             },
             {
                 path: "/dashboard/allusers",
-                element: <><AllUsers /> </>,
+                element: <AdminRoute><AllUsers /> </AdminRoute>,
             },
             {
                 path: "/dashboard/addcars",
-                element: <><AddCars /> </>,
+                element: <AdminRoute><AddCars /> </AdminRoute>,
             },
             {
                 path: "/dashboard/managecars",
-                element: <><ManageCars /> </>,
+                element: <AdminRoute><ManageCars /> </AdminRoute>,
             },
 
         ]
