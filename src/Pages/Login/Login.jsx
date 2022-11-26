@@ -12,7 +12,7 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const [token] = useToken(loggedEmail);
 
-
+    console.log(token);
 
     // routing part
     const location = useLocation();

@@ -1,21 +1,23 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
 const Category = () => {
 
     const [categories, setCategories] = useState([]);
+    // const [isloading, setIsloading] = useState(true);
 
     // useEffect(() => {
     //     fetch('Category.json')
     //         .then(res => res.json())
     //         .then(data => setCategories(data))
     // })
+    // if (isloading) return <Spinner></Spinner>
 
     axios.get(`${process.env.REACT_APP_Base_URL}/category`)
         .then(response => {
             // console.log(response);
-            setCategories(response.data)
+            // setIsloading(false)
+            setCategories(response.data);
         })
         .catch(err => console.log(err.message))
     return (
