@@ -4,6 +4,7 @@ import AllUsers from "../Management/All Users/AllUsers";
 import Dashboard from "../Management/Dashboard/Dashboard";
 import ManageCars from "../Management/Manage Cars/ManageCars";
 import MyPurchaseList from "../Management/My Purchase List/MyPurchaseList";
+import Payment from "../Management/Payment Page/Payment";
 import Blogs from "../Pages/Blogs/Blogs";
 import AllCars from "../Pages/Cars/AllCars";
 import RightCars from "../Pages/Cars/Right cars/RightCars";
@@ -75,6 +76,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/managecars",
                 element: <AdminRoute><ManageCars /> </AdminRoute>,
+            },
+            {
+                path: "/dashboard/payment/:id",
+                element: <><Payment /> </>,
             },
 
         ]

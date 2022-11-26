@@ -74,7 +74,6 @@ const AllUsers = () => {
                                 <td>{user.fullName}</td>
                                 <td>{user.email}</td>
                                 <td>{user.account}</td>
-                                <td></td>
                                 <td>{user?.role !== "admin" && <button className="btn btn-xs btn-primary " onClick={() => handleMakeAdmin(user._id)}>Make Admin</button>}</td>
                                 <td><button className="text-error" onClick={() => hanleDelete(user)}><FaTrashAlt /></button></td>
 

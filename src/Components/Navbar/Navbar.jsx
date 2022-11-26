@@ -22,9 +22,12 @@ export const Navbar = () => {
         <li><Link to="/blogs">Blogs</Link></li>
         <li><Link to="/cars">Cars</Link></li>
         {
-            user?.email || <><button className="btn btn-primary "><Link to="/register">register</Link></button>
-                <button className="btn btn-outline rounded-lg"><Link to="/login">Login</Link></button>
+            user?.email ? <>
             </>
+                : <>
+                    <button className="btn btn-primary "><Link to="/register">register</Link></button>
+                    <button className="btn btn-outline rounded-lg"><Link to="/login">Login</Link></button>
+                </>
         }
         {/* {
             user?.email || <></>

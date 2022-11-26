@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { FaTrashAlt } from "react-icons/fa"
+import { Link } from 'react-router-dom'
 import { Spinner } from '../../Components/Spinner/Spinner'
 import { AuthContext } from '../../Contexts/AuthProvider'
 const MyPurchaseList = () => {
@@ -38,6 +39,8 @@ const MyPurchaseList = () => {
             })
             .catch(err => toast.error(err.message))
     }
+
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -48,8 +51,9 @@ const MyPurchaseList = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Price</th>
                             <th>Model Name</th>
+                            <th>Price</th>
+                            <th>Payment Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -64,7 +68,15 @@ const MyPurchaseList = () => {
                                     <td>{singlePurchase.buyerEmail}</td>
                                     <td>{singlePurchase.sellingPrice}</td>
                                     <td>{singlePurchase.carModelName}</td>
-
+                                    <td>
+                                        {
+                                            singlePurchase?.sellingPrice && !singlePurchase.paid &&
+                                            <Link to={`/dashboard/payment/${singlePurchase._id}`}><button className="btn btn-xs btn-base-100" onClick={() => { }}>Pay now</button></Link>
+                                        }
+                                        {
+                                            singlePurchase?.sellingPrice && singlePurchase.paid && <button className="btn btn-xs btn-base-100 text-green-500 " disabled>paid</button>
+                                        }
+                                    </td>
                                     <td><button className="text-error" onClick={() => hanleDelete(singlePurchase)}><FaTrashAlt /></button></td>
                                 </tr>)
                         }
