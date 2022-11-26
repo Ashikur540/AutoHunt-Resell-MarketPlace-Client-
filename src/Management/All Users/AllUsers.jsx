@@ -9,7 +9,11 @@ const AllUsers = () => {
     // console.log(baseUrl);
     const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
-        queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/users`).then(res => res.json())
+        queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/users`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('autohunt-token')}`
+            }
+        }).then(res => res.json())
     })
 
     if (isLoading) return <Spinner></Spinner>
