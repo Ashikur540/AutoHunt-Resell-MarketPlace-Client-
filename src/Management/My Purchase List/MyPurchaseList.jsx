@@ -1,18 +1,43 @@
 import { useQuery } from '@tanstack/react-query'
 import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
+import { FaTrashAlt } from "react-icons/fa"
 import { Spinner } from '../../Components/Spinner/Spinner'
 import { AuthContext } from '../../Contexts/AuthProvider'
-
 const MyPurchaseList = () => {
     const { user } = useContext(AuthContext)
     const { data: myPurchaseList = [], isLoading, refetch } = useQuery({
         queryKey: ['myPurchaseList', user?.email],
-        queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/myPurchaseList?email=${user?.email}`)
+        queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/myPurchaseList?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("autohunt-token")}`
+            }
+        })
             .then(res => res.json())
             .catch(err => toast.error(err.message))
     })
     if (isLoading) return <Spinner />
+
+
+    const hanleDelete = purchasedItem => {
+        const { _id, carModelName, carID, buyerEmail } = purchasedItem
+        // console.log(_id);
+        fetch(`${process.env.REACT_APP_Base_URL}/myPurchaseList/${_id}/${carID}?email=${buyerEmail}`, {
+            method: "DELETE",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("autohunt-token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount) {
+                    toast.success(`${carModelName} deletion successfull`)
+                    refetch();
+                }
+            })
+            .catch(err => toast.error(err.message))
+    }
     return (
         <div>
             <div className="overflow-x-auto">
@@ -25,7 +50,7 @@ const MyPurchaseList = () => {
                             <th>Email</th>
                             <th>Price</th>
                             <th>Model Name</th>
-                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +65,7 @@ const MyPurchaseList = () => {
                                     <td>{singlePurchase.sellingPrice}</td>
                                     <td>{singlePurchase.carModelName}</td>
 
-                                    <td>button</td>
+                                    <td><button className="text-error" onClick={() => hanleDelete(singlePurchase)}><FaTrashAlt /></button></td>
                                 </tr>)
                         }
 
