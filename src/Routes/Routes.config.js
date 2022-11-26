@@ -4,6 +4,7 @@ import AllUsers from "../Management/All Users/AllUsers";
 import Dashboard from "../Management/Dashboard/Dashboard";
 import ManageCars from "../Management/Manage Cars/ManageCars";
 import MyPurchaseList from "../Management/My Purchase List/MyPurchaseList";
+import Blogs from "../Pages/Blogs/Blogs";
 import AllCars from "../Pages/Cars/AllCars";
 import RightCars from "../Pages/Cars/Right cars/RightCars";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -31,6 +32,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />
+            },
+            {
+                path: "/blogs",
+                element: <Blogs />
             },
             {
                 path: "/cars",
