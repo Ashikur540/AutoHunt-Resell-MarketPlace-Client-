@@ -38,20 +38,20 @@ const AllUsers = () => {
                     <tbody>
 
                         {
-                            users?.map((user, i) => <tr>
+                            users?.map((user, i) => <tr key={user._id}>
                                 <th>{i + 1}</th>
                                 <td>{user.fullName}</td>
                                 <td>{user.email}</td>
                                 <td>{user.account}</td>
                                 {/* <td>{user?.role !== "admin" && <button className="btn btn-xs btn-primary " onClick={() => handleMakeAdmin(user._id)}>Make Admin</button>}</td> */}
-                                <div className="dropdown dropdown-left">
+                                <td className="dropdown dropdown-left">
                                     <label tabIndex={0} className="btn btn-xs btn-accent m-1">:</label>
                                     <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                                         <li><button className="btn  btn-error">Delete</button></li>
                                         <li><button className="btn btn-outline  btn-secondary">Edit</button></li>
 
                                     </ul>
-                                </div>
+                                </td>
                             </tr>)
                         }
                     </tbody>

@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import { useToken } from "../../Hooks/useToken";
 const Register = () => {
     // contexts
     const { createUser, updateUser } = useContext(AuthContext)
-
+    const [createdEmail, setCreatedEmail] = useState("");
+    const navigate = useNavigate();
     // hooks
-
+    const [token] = useToken(createdEmail);
+    if (token) navigate('/')
 
 
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
@@ -19,7 +22,7 @@ const Register = () => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
-        console.log(image);
+        // console.log(image);
 
         const url = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_imgbb_key}`;
 
@@ -41,7 +44,7 @@ const Register = () => {
                             photoURL: img_url,
                         }
 
-                        console.log("UsER INFO", profile);
+                        // console.log("UsER INFO", profile);
 
                         // update profile
                         updateUser(profile)
@@ -77,10 +80,13 @@ const Register = () => {
             body: JSON.stringify(userInfo)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                setCreatedEmail(email);
+            })
     }
 
-
+    console.log(createdEmail);
 
 
 

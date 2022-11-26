@@ -1,13 +1,17 @@
 import { GoogleAuthProvider } from '@firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useLocation } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../Contexts/AuthProvider';
+import { useToken } from '../../Hooks/useToken';
 const Login = () => {
+    const [loggedEmail, setLoggedEmail] = useState("");
     const { loginUser, googleSignin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+    const [token] = useToken(loggedEmail);
+
 
 
     // routing part
@@ -16,7 +20,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/"
 
     // jodi pai taile navigate korbo
-    // if (token) navigate(from, { replace: true })
+    if (token) navigate(from, { replace: true })
 
 
 
@@ -26,14 +30,15 @@ const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const hanldeSignin = (data) => {
-        console.log(data);
+        // console.log(data);
         const { email, password } = data;
         loginUser(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setLoggedEmail(user?.email)
                 toast.success("Login in success");
-                navigate(from, { replace: true })
+
             })
             .catch(err => {
                 toast.error(err.message)
@@ -48,9 +53,11 @@ const Login = () => {
             console.log(user);
             // window.location.reload();
             const account = 'buyer'
-            saveUser(user?.displayName, user?.email, account)
+            saveUser(user?.displayName, user?.email, account);
+            setLoggedEmail(user?.email);
             toast.success('login successfull')
-            navigate(from, { replace: true })
+
+            // navigate(from, { replace: true })
         })
             .catch(error => {
                 console.error(error);

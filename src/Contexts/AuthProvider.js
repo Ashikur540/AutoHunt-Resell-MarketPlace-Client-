@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
 
     const logoutUser = () => {
         setLoading(true);
-        localStorage.removeItem('doctors-token');
+        localStorage.removeItem('autohunt-token');
         return signOut(auth);
     }
 
