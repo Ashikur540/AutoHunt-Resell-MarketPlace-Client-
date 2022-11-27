@@ -56,7 +56,9 @@ const AddCars = () => {
                 fetch(`${process.env.REACT_APP_Base_URL}/cars/add`, {
                     method: "POST",
                     headers: {
-                        "content-type": "application/json"
+                        "content-type": "application/json",
+                        authorization: `Bearer ${localStorage.getItem('autohunt-token')}`
+
                     },
                     body: JSON.stringify(carInfo)
                 })

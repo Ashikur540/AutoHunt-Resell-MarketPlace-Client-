@@ -1,4 +1,4 @@
-import heroImg from "../../Assets/Carsousel/c1.jpg";
+import heroImg from "../../Assets/Images/MMW hero.jpg";
 
 export const Banner = () => {
     return (
@@ -7,11 +7,11 @@ export const Banner = () => {
                 <div className="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
                     <div className="max-w-xl mb-6">
                         <div>
-                            <p className="inline-block  py-px mb-4 text-xs font-semibold tracking-wider text-secondary uppercase rounded-full bg-teal-accent-400">
+                            <p className="inline-block  py-px mb-4 text-xs font-semibold tracking-wider text-primary uppercase rounded-full bg-teal-accent-400">
                                 New Collection arrives
                             </p>
                         </div>
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-primary sm:text-4xl sm:leading-none md:leading-normal">
+                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-base-10 sm:text-4xl sm:leading-none md:leading-normal">
                             Fullfill
                             <br className="hidden md:block" />
                             Your dream{' '}
@@ -20,13 +20,11 @@ export const Banner = () => {
                             </span>
                         </h2>
                         <p className="text-base font-light text-slate-200 md:text-lg">
-                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                            accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                            quae. explicabo.
+                            This is a car reselling website where we sell cars and many sellers sells their cars accross the country.We try to sell with the least minimal profit and make people happy.People trust us because we are native and secure.
                         </p>
                     </div>
                     <div className="flex flex-col items-center md:flex-row">
-                        <button className="btn glass">Explore</button>
+                        <a className="btn glass" href="#car-category" >Explore</a>
 
                     </div>
                 </div>
@@ -38,6 +36,6 @@ export const Banner = () => {
                     alt=""
                 />
             </div>
-        </div>
+        </div >
     );
 };
