@@ -91,7 +91,8 @@ const CheckoutForm = ({ purchasedItem, dateStr }) => {
                 transactionID: paymentIntent.id,
                 buyerEmail,
                 purchasedItemID: _id,
-                paymentDate: dateStr
+                paymentDate: dateStr,
+                carID,
             }
 
             // save payment log into db

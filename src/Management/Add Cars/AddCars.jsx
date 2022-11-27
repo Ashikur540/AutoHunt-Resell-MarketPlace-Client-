@@ -46,7 +46,8 @@ const AddCars = () => {
                     selllerContact,
                     postedDate: dateStr,
                     usageTime,
-                    available: 'instock'
+                    available: 'instock',
+                    paid: false
 
                 }
 
