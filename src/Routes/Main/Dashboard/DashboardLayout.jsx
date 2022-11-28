@@ -28,7 +28,9 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to="/dashboard"><FaClipboardList /> My PurchaseList</Link></li>
-                        <li><Link to="/dashboard/myreports"><FaClipboardList /> My Reported Items</Link></li>
+                        {
+                            !isAdmin && !isSeller && <li><Link to="/dashboard/myreports"><FaClipboardList /> My Reported Items</Link></li>
+                        }
 
                         {
                             isAdmin && <>
@@ -37,6 +39,7 @@ const DashboardLayout = () => {
                                 <li><Link to="/dashboard/allbuyers"><FaUser />All buyers</Link></li>
                                 {/* <li><Link to="/dashboard/addcars"><FaPlus />Add Cars</Link></li> */}
                                 <li><Link to='/dashboard/managecars'><FaCarSide />All Cars</Link></li>
+                                <li><Link to='/dashboard/reports'><FaCarSide />All reports</Link></li>
                             </>
                         }
                         {

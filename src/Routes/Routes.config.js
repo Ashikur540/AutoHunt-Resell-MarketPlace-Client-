@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddCars from "../Management/Add Cars/AddCars";
 import AllBuyers from "../Management/All Buyers/AllBuyers";
+import Reports from "../Management/All Reports/Reports";
 import AllSellers from "../Management/All Sellers/AllSellers";
 import AllUsers from "../Management/All Users/AllUsers";
 import Dashboard from "../Management/Dashboard/Dashboard";
@@ -97,6 +98,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard/mycars",
                 element: <SellerRoute><MyCars /> </SellerRoute>,
+            },
+            {
+                path: "/dashboard/reports",
+                element: <SellerRoute><Reports /> </SellerRoute>,
             },
             // {
             //     path: "/dashboard/addcars",
