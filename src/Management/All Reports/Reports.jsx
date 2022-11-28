@@ -28,7 +28,7 @@ const Reports = () => {
             .then(data => {
                 console.log(data);
                 if (data.deletedCount) {
-                    toast.success(` deletion successfull`)
+                    toast.success(`deletion successfull`)
                     refetch();
                 }
             })

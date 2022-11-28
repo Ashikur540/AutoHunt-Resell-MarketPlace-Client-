@@ -81,6 +81,9 @@ export const Navbar = () => {
                                         isAdmin && <span className="badge">Admin</span>
                                     }
                                     {
+                                        isSeller && <span className="badge">Seller</span>
+                                    }
+                                    {
                                         isAdmin && isSeller && <span className="badge">Admin & Seller</span>
                                     }
 

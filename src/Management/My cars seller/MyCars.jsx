@@ -6,7 +6,7 @@ import { Spinner } from '../../Components/Spinner/Spinner';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const MyCars = () => {
-  const { user } = useContext(AuthContext)
+  const { user, dispatch, state } = useContext(AuthContext)
   const { data: allCars = [], isLoading, refetch } = useQuery({
     queryKey: ['allCars'],
     queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/allCars`, {
@@ -21,7 +21,7 @@ const MyCars = () => {
   const myCars = allCars.filter(mycar => mycar.sellerEmail === user?.email)
   console.log("MY CARS:  ", myCars);
 
-
+  console.log("state", state);
 
   const hanleDelete = singlecar => {
     const { _id, modelName, } = singlecar
