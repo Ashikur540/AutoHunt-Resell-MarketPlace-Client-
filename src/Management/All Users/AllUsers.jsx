@@ -28,8 +28,8 @@ const AllUsers = () => {
         }).then(res => res.json())
             .then(data => {
                 console.log(data);
-                alert('Upded')
-                refetch()
+                toast.success('Created an admin')
+                refetch();
             })
     }
     const hanleDelete = user => {

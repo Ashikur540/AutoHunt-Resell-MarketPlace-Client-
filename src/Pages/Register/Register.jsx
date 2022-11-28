@@ -52,6 +52,7 @@ const Register = () => {
                                 saveUser(fullName, email, account)
                                 toast.success('Account creation succesfull');
                                 reset();
+                                window.location.reload();
                             })
                             .catch(err => console.error(err.message));
                     })
@@ -130,7 +131,9 @@ const Register = () => {
                                 <input className="block w-full text-md text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none h-12" type="file"
                                     {...register("image", { required: "image is required" })}
                                 />
+
                             </div>
+                            {errors.image && <p className="text-error">Please provide picture</p>}
                         </div>
                         <div>
                             <label htmlFor="email" className="text-sm font-medium">Email</label>

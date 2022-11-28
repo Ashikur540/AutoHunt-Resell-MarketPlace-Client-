@@ -3,7 +3,7 @@ import React from 'react';
 const CarsCard = ({ car, setCarInfo }) => {
 
 
-    const { modelName, _id, resellPrice, available, usageTime, originalPrice, location, image_url, description, selllerContact, condition, paid } = car;
+    const { modelName, _id, resellPrice, available, usageTime, originalPrice, location, image_url, description, selllerContact, condition, paid, sellerEmail } = car;
     return (
         <>
             <div className="card w-auto bg-neutral shadow-xl">
@@ -24,6 +24,7 @@ const CarsCard = ({ car, setCarInfo }) => {
                     </div>
                     <div className="card-actions justify-between items-center mt-3">
                         <p className="text-slate-50">☎:<span className="text-accent"> {selllerContact}</span></p>
+                        <p className="text-slate-50">✉:<span className="text-accent"> {sellerEmail}</span></p>
                         <label htmlFor="my-modal-3" className="btn btn-primary" disabled={paid === 'outofstock' ? 'disabled' : ''} onClick={() => { setCarInfo(car) }}>Buy Now</label>
                         {/* <label htmlFor="my-modal-3" className="btn btn-primary" disabled={!paid && 'disabled'} onClick={() => { setCarInfo(car) }}>Buy Now</label> */}
                     </div>

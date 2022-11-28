@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../../Contexts/AuthProvider';
+import { useAdmin } from '../../Hooks/useAdmin';
+import { useSeller } from '../../Hooks/useSeller';
 const AddCars = () => {
+    const { user } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeller] = useSeller(user?.email);
+
     const navigate = useNavigate();
     const handleAddCars = (data) => {
         // console.log("add car info", data);
@@ -68,7 +76,12 @@ const AddCars = () => {
                         console.log(data);
                         toast.success('Car added successfully');
                         reset();
-                        navigate('/dashboard/managecars')
+                        if (isAdmin) {
+                            navigate('/dashboard/managecars')
+                        }
+                        if (isSeller) {
+                            navigate('/dashboard/mycars')
+                        }
                     })
             })
             .catch(err => console.log(err.message))
@@ -127,6 +140,8 @@ const AddCars = () => {
                                             placeholder="Seller Email address"
                                             type="email"
                                             id="email"
+                                            readOnly
+                                            defaultValue={user?.email}
                                             {...register("sellerEmail")}
                                         />
                                     </div>
@@ -138,6 +153,7 @@ const AddCars = () => {
                                             placeholder="Seller Phone Number"
                                             type="tel"
                                             id="phone"
+                                            required
                                             {...register("selllerContact")}
                                         />
                                     </div>
@@ -147,7 +163,7 @@ const AddCars = () => {
                                             className="w-full rounded-lg border-gray-200 p-3 text-sm text-base-100"
                                             placeholder="Age of the car(ex: 1 year /6 months)"
                                             type="text"
-
+                                            required
                                             {...register("usageTime")}
                                         />
                                     </div>
@@ -177,7 +193,7 @@ const AddCars = () => {
                                             className="w-full rounded-lg border-gray-200 p-3 text-sm text-base-100"
                                             placeholder="original price $"
                                             type="text"
-
+                                            required
                                             {...register("originalPrice")}
 
                                         />

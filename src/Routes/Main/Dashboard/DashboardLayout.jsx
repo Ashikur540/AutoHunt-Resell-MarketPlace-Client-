@@ -18,7 +18,7 @@ const DashboardLayout = () => {
             <Navbar />
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content ">
+                <div className="drawer-content h-full">
                     {/* <!-- Page content here --> */}
                     <Outlet />
                     {/* <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
@@ -34,7 +34,7 @@ const DashboardLayout = () => {
                                 <li><Link to="/dashboard/allusers"><FaUserFriends />All users</Link></li>
                                 <li><Link to="/dashboard/allsellers"><FaUserTie /> All sellers</Link></li>
                                 <li><Link to="/dashboard/allbuyers"><FaUser />All buyers</Link></li>
-                                <li><Link to="/dashboard/addcars"><FaPlus />Add Cars</Link></li>
+                                {/* <li><Link to="/dashboard/addcars"><FaPlus />Add Cars</Link></li> */}
                                 <li><Link to='/dashboard/managecars'><FaCarSide />All Cars</Link></li>
                             </>
                         }
@@ -43,7 +43,7 @@ const DashboardLayout = () => {
                             <>
 
                                 <li><Link to="/dashboard/addcars"><FaPlus />Add Cars</Link></li>
-                                <li><Link to='/dashboard/managecars'><FaCarSide />All Cars</Link></li>
+                                <li><Link to='/dashboard/mycars'><FaCarSide />My Cars</Link></li>
                             </>
 
                         }
@@ -59,3 +59,6 @@ const DashboardLayout = () => {
 }
 
 export default DashboardLayout
+
+
+

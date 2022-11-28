@@ -20,7 +20,8 @@ const ManageCars = () => {
 
     const hanleDelete = singlecar => {
         const { _id, modelName, } = singlecar
-        // console.log(_id);
+        console.log(_id);
+        console.log('test...');
         fetch(`${process.env.REACT_APP_Base_URL}/allCars/${_id}`, {
             method: "DELETE",
             headers: {
@@ -30,20 +31,20 @@ const ManageCars = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if (data.deletedCount) {
-                    toast.success(`${modelName} deletion successfull`)
-                    refetch();
-                }
+
+                toast.success(`${modelName} deletion successfull`)
+                refetch();
+
             })
             .catch(err => toast.error(err.message))
     }
     console.log(allCars)
     return (
         <>
-            <p className="text-3xl font-bold text-center text-primary my-4">Manage cars here</p>
+            <p className="text-3xl font-bold text-center text-primary my-2">Manage cars here</p>
 
-            <div className="overflow-x-auto overflow-y-hidden">
-                <table className="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full h-full">
 
                     <thead>
                         <tr>
