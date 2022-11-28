@@ -7,6 +7,7 @@ import Dashboard from "../Management/Dashboard/Dashboard";
 import ManageCars from "../Management/Manage Cars/ManageCars";
 import MyCars from "../Management/My cars seller/MyCars";
 import MyPurchaseList from "../Management/My Purchase List/MyPurchaseList";
+import MyReports from "../Management/My reports/MyReports";
 import Payment from "../Management/Payment Page/Payment";
 import Blogs from "../Pages/Blogs/Blogs";
 import AllCars from "../Pages/Cars/AllCars";
@@ -68,6 +69,10 @@ export const routes = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <MyPurchaseList />,
+            },
+            {
+                path: "/dashboard/myreports",
+                element: <MyReports />,
             },
             {
                 path: "/dashboard/allusers",

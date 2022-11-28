@@ -1,9 +1,13 @@
 import React from 'react';
 
-const CarsCard = ({ car, setCarInfo }) => {
+const CarsCard = ({ car, setCarInfo, handleReport }) => {
 
 
     const { modelName, _id, resellPrice, available, usageTime, originalPrice, location, image_url, description, selllerContact, condition, paid, sellerEmail } = car;
+
+
+
+
     return (
         <>
             <div className="card w-auto bg-neutral shadow-xl">
@@ -22,12 +26,19 @@ const CarsCard = ({ car, setCarInfo }) => {
                         <div className="badge badge-outline">Usage: {usageTime}</div>
                         <div className="badge badge-outline">{location}</div>
                     </div>
+                    <div className="flex flex-col">
+                        <p className="text-slate-50">☎:<span className="text-accent"> {selllerContact}</span></p>
+                        <p className="text-slate-50">☎:<span className="text-accent"> {sellerEmail}</span></p>
+                    </div>
                     <div className="card-actions justify-between items-center mt-3">
-                        <div className="flex flex-col">
-                            <p className="text-slate-50">☎:<span className="text-accent"> {selllerContact}</span></p>
-                            <p className="text-slate-50">☎:<span className="text-accent"> {sellerEmail}</span></p>
+
+                        {/* report item */}
+                        <button className="btn btn-xs btn-error" onClick={() => { handleReport(car) }}>report!</button>
+
+
+                        <div className="">
+                            <label htmlFor="my-modal-3" className="btn btn-primary mx-auto" onClick={() => { setCarInfo(car) }}>Buy Now</label>
                         </div>
-                        <label htmlFor="my-modal-3" className="btn btn-primary" disabled={paid === 'outofstock' ? 'disabled' : ''} onClick={() => { setCarInfo(car) }}>Buy Now</label>
                         {/* <label htmlFor="my-modal-3" className="btn btn-primary" disabled={!paid && 'disabled'} onClick={() => { setCarInfo(car) }}>Buy Now</label> */}
                     </div>
                 </div>

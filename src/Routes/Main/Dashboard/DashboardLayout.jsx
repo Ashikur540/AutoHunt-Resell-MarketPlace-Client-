@@ -28,6 +28,7 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to="/dashboard"><FaClipboardList /> My PurchaseList</Link></li>
+                        <li><Link to="/dashboard/myreports"><FaClipboardList /> My Reported Items</Link></li>
 
                         {
                             isAdmin && <>

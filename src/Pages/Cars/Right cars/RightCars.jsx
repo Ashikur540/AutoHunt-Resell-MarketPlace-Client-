@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useParams } from 'react-router';
 import { Spinner } from "../../../Components/Spinner/Spinner";
 import { AuthContext } from '../../../Contexts/AuthProvider';
@@ -18,6 +19,37 @@ const RightCars = () => {
     })
 
     if (isLoading) return <Spinner />
+
+    const handleReport = car => {
+        console.log(car);
+
+
+
+
+        const reportInfo = {
+            reportedItemInfo: car,
+            reportedUserEmail: user?.email,
+            reportedUserName: user?.displayName
+        }
+
+        console.log(reportInfo);
+        fetch(`${process.env.REACT_APP_Base_URL}/report`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                authorization: `Bearer ${localStorage.getItem('autohunt-token')}`
+
+            },
+            body: JSON.stringify(reportInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success('reported successfull')
+            })
+            .catch(err => toast.error(err))
+
+    }
     return (
         <div>
             <h1 className="text-2xl text-accent font-bold my-2 text-center ">Cars found {availableCars?.length}</h1>
@@ -28,6 +60,7 @@ const RightCars = () => {
                             key={car._id}
                             car={car}
                             setCarInfo={setCarInfo}
+                            handleReport={handleReport}
                         ></CarsCard>)
                     }
 
