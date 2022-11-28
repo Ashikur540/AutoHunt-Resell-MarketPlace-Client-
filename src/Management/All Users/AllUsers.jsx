@@ -46,7 +46,7 @@ const AllUsers = () => {
                 console.log(data);
                 if (data => data.deletedCount) {
                     toast.success(`Successfully deleted ${fullName}`);
-                    refetch()
+                    refetch();
                 }
             })
             .catch(err => toast.error(err.message))
@@ -63,7 +63,7 @@ const AllUsers = () => {
                             <th>Email</th>
                             <th>Account</th>
                             <th>Role</th>
-                            <th>Verified</th>
+
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -76,7 +76,7 @@ const AllUsers = () => {
                                 <td>{user.email}</td>
                                 <td>{user.account}</td>
                                 <td>{user?.role !== "admin" && <button className="btn btn-xs btn-primary " onClick={() => handleMakeAdmin(user._id)}>Make Admin</button>}</td>
-                                <td>❄</td>
+
                                 <td><button className="text-error" onClick={() => hanleDelete(user)}><FaTrashAlt /></button></td>
 
                             </tr>)

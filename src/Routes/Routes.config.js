@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddCars from "../Management/Add Cars/AddCars";
+import AllBuyers from "../Management/All Buyers/AllBuyers";
+import AllSellers from "../Management/All Sellers/AllSellers";
 import AllUsers from "../Management/All Users/AllUsers";
 import Dashboard from "../Management/Dashboard/Dashboard";
 import ManageCars from "../Management/Manage Cars/ManageCars";
@@ -16,6 +18,7 @@ import { AdminRoute } from "./Admin Route/AdminRoute";
 import DashboardLayout from "./Main/Dashboard/DashboardLayout";
 import Main from "./Main/Main";
 import { PrivateRoute } from "./Private/PrivateRoute";
+import { SellerRoute } from "./Seller Route/SellerRoute";
 export const routes = createBrowserRouter([
     {
         path: '/',
@@ -70,13 +73,29 @@ export const routes = createBrowserRouter([
                 element: <AdminRoute><AllUsers /> </AdminRoute>,
             },
             {
+                path: "/dashboard/allsellers",
+                element: <><AllSellers /> </>,
+            },
+            {
+                path: "/dashboard/allbuyers",
+                element: <><AllBuyers /> </>,
+            },
+            {
                 path: "/dashboard/addcars",
-                element: <AdminRoute><AddCars /> </AdminRoute>,
+                element: <SellerRoute><AddCars /> </SellerRoute>,
             },
             {
                 path: "/dashboard/managecars",
-                element: <AdminRoute><ManageCars /> </AdminRoute>,
+                element: <SellerRoute><ManageCars /> </SellerRoute>,
             },
+            // {
+            //     path: "/dashboard/addcars",
+            //     element: <SellerRoute><AddCars /> </SellerRoute>,
+            // },
+            // {
+            //     path: "/dashboard/managecars",
+            //     element: <SellerRoute><ManageCars /> </SellerRoute>,
+            // },
             {
                 path: "/dashboard/payment/:id",
                 element: <><Payment /> </>,

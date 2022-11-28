@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import toast from 'react-hot-toast'
-import { FaTrashAlt } from "react-icons/fa"
+import { FaEllipsisV, FaGlobe, FaTrashAlt } from "react-icons/fa"
 import { Spinner } from "../../Components/Spinner/Spinner"
 const ManageCars = () => {
 
@@ -37,6 +37,7 @@ const ManageCars = () => {
             })
             .catch(err => toast.error(err.message))
     }
+    console.log(allCars)
     return (
         <>
             <p className="text-3xl font-bold text-center text-primary my-4">Manage cars here</p>
@@ -53,6 +54,7 @@ const ManageCars = () => {
                             <th>Seller Contact</th>
                             <th>Availability</th>
                             <th>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -65,7 +67,17 @@ const ManageCars = () => {
                                 <td>{singleCar?.sellerEmail ? singleCar?.sellerEmail : 'not privided'}</td>
                                 <td>{singleCar?.selllerContact}</td>
                                 <td>{singleCar?.available}</td>
-                                <td><button className="text-error" onClick={() => hanleDelete(singleCar)}><FaTrashAlt /></button></td>
+                                <div className="dropdown dropdown-end">
+                                    <label tabIndex={0} className="cursor-pointer m-1"><FaEllipsisV /></label>
+                                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+
+                                        <li><button className="text-accent"> <FaGlobe />  Advertise Now</button></li>
+                                        <td>
+                                            <button className="text-error flex items-center" onClick={() => hanleDelete(singleCar)}> <FaTrashAlt />   Delete</button>
+                                        </td>
+                                    </ul>
+                                </div>
+                                {/*  */}
 
 
                             </tr>)

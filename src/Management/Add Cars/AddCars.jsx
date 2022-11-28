@@ -1,10 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-
+import { useNavigate } from "react-router-dom";
 const AddCars = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-
+    const navigate = useNavigate();
     const handleAddCars = (data) => {
         // console.log("add car info", data);
         const { category_name, condition, description, location, modelName, originalPrice, resellPrice, sellerEmail, selllerContact, usageTime } = data;
@@ -68,6 +68,7 @@ const AddCars = () => {
                         console.log(data);
                         toast.success('Car added successfully');
                         reset();
+                        navigate('/dashboard/managecars')
                     })
             })
             .catch(err => console.log(err.message))

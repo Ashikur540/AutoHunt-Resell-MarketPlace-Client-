@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import logo from "../../Assets/Images/logo-white.png"
 import { AuthContext } from '../../Contexts/AuthProvider'
 import { useAdmin } from '../../Hooks/useAdmin'
+import { useSeller } from '../../Hooks/useSeller'
 export const Navbar = () => {
 
     const { logoutUser, user } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email);
+    const [isSeller] = useSeller(user?.email);
+    console.log("from nav", isSeller);
     const handleLogout = () => {
         logoutUser()
             .then(() => {
@@ -76,6 +79,9 @@ export const Navbar = () => {
                                     {user?.uid ? user?.displayName : "no user found"}
                                     {
                                         isAdmin && <span className="badge">Admin</span>
+                                    }
+                                    {
+                                        isAdmin && isSeller && <span className="badge">Admin & Seller</span>
                                     }
 
                                 </Link>
