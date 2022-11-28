@@ -52,7 +52,7 @@ const Register = () => {
                                 saveUser(fullName, email, account)
                                 toast.success('Account creation succesfull');
                                 reset();
-                                window.location.reload();
+                                // window.location.reload();
                             })
                             .catch(err => console.error(err.message));
                     })

@@ -23,8 +23,10 @@ const CarsCard = ({ car, setCarInfo }) => {
                         <div className="badge badge-outline">{location}</div>
                     </div>
                     <div className="card-actions justify-between items-center mt-3">
-                        <p className="text-slate-50">☎:<span className="text-accent"> {selllerContact}</span></p>
-                        <p className="text-slate-50">✉:<span className="text-accent"> {sellerEmail}</span></p>
+                        <div className="flex flex-col">
+                            <p className="text-slate-50">☎:<span className="text-accent"> {selllerContact}</span></p>
+                            <p className="text-slate-50">☎:<span className="text-accent"> {sellerEmail}</span></p>
+                        </div>
                         <label htmlFor="my-modal-3" className="btn btn-primary" disabled={paid === 'outofstock' ? 'disabled' : ''} onClick={() => { setCarInfo(car) }}>Buy Now</label>
                         {/* <label htmlFor="my-modal-3" className="btn btn-primary" disabled={!paid && 'disabled'} onClick={() => { setCarInfo(car) }}>Buy Now</label> */}
                     </div>
