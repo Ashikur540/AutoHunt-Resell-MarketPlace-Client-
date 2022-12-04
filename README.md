@@ -1,6 +1,66 @@
-# Getting Started with Create React App
+# [AutoHunt](https://autohunt-f5b1c.web.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 💡Features:
+
+##### User/Buyer Side:
+
+- Log in , resgistration ,authentication.
+- users can see different cars category.
+- Logged user can see available cars.
+- user / buyer can purchase a product through payment (stripe).
+- user can report any car item.
+- User can see his purchaselist in dashboard can delete any of them .
+- Authorization (JWT)
+
+##### Seller Side:
+
+- can add any cars to system.
+- Can see his added cars .
+- can delete them if want.
+- Authorization (JWT)
+
+##### Admin Side:
+
+- Can see all users.
+- Can make someone admin.
+- Can verify any seller.
+- Can Manage Buyers and seller like (delete them)
+- Can see all the reported items
+- Authorization (JWT)
+
+## Technology:
+
+##### FrontEnd:
+
+- React
+- React router.
+- Tailwind
+- daisy UI.
+
+### backend
+
+- Node js.
+- Express Js.
+- Mongo db for data cloud.
+- Dot env.
+- JWT for Authorization
+
+## TEST ACCOUNTS:
+
+###### ADMIN:
+
+email=spiderman@gmail.com
+pass=aaaaaaaaA1
+
+###### Seller
+
+email=leonelmessi@gmail.com
+password=aaaaaaaaA1
+
+###### Buyer/User
+
+email=normaluser@gmail.com
+pass=aaaaaaaaA1
 
 ## Available Scripts
 

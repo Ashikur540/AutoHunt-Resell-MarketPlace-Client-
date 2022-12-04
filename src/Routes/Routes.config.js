@@ -10,18 +10,22 @@ import MyCars from "../Management/My cars seller/MyCars";
 import MyPurchaseList from "../Management/My Purchase List/MyPurchaseList";
 import MyReports from "../Management/My reports/MyReports";
 import Payment from "../Management/Payment Page/Payment";
+import AddReview from "../Pages/Add review/AddReview";
+import AllReviews from "../Pages/All Reviews/AllReviews";
 import Blogs from "../Pages/Blogs/Blogs";
-import AllCars from "../Pages/Cars/AllCars";
 import RightCars from "../Pages/Cars/Right cars/RightCars";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login/Login";
+import MyReviews from '../Pages/My Reviews/MyReviews';
 import Register from "../Pages/Register/Register";
 import { AdminRoute } from "./Admin Route/AdminRoute";
 import DashboardLayout from "./Main/Dashboard/DashboardLayout";
 import Main from "./Main/Main";
 import { PrivateRoute } from "./Private/PrivateRoute";
 import { SellerRoute } from "./Seller Route/SellerRoute";
+
+
 export const routes = createBrowserRouter([
     {
         path: '/',
@@ -46,18 +50,33 @@ export const routes = createBrowserRouter([
                 element: <Blogs />
             },
             {
-                path: "/cars",
-                element: <AllCars />,
-                children: [
-
-                    {
-                        path: "/cars/:category_name",
-                        element: <PrivateRoute><RightCars /></PrivateRoute>
-                    },
-                ]
+                path: "/reviews",
+                element: <AllReviews />
             },
+            // {
+            //     path: "/cars",
+            //     element: <AllCars />,
+            //     children: [
 
+            //         {
+            //             path: "/cars/:category_name",
+            //             element: <PrivateRoute><RightCars /></PrivateRoute>
+            //         },
+            //     ]
+            // },
 
+            {
+                path: "/cars/:category_name",
+                element: <PrivateRoute><RightCars /></PrivateRoute>
+            },
+            {
+                path: "/my-reviews",
+                element: <PrivateRoute><MyReviews /></PrivateRoute>
+            },
+            {
+                path: "/reviews/add",
+                element: <PrivateRoute><AddReview /></PrivateRoute>
+            },
 
         ]
 

@@ -1,4 +1,4 @@
-import heroImg from "../../Assets/Images/MMW hero.jpg";
+import Carousel from "../Carousel";
 
 export const Banner = () => {
     return (
@@ -30,11 +30,12 @@ export const Banner = () => {
                 </div>
             </div>
             <div className="inset-y-0 right-0 w-full max-w-xl px-4 mx-auto lg:pl-8 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-1/2 lg:max-w-full lg:absolute xl:px-0">
-                <img
+                {/* <img
                     className="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none sm:h-96 lg:h-full"
                     src={heroImg}
                     alt=""
-                />
+                /> */}
+                <Carousel />
             </div>
         </div >
     );

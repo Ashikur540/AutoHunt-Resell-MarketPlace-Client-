@@ -23,11 +23,14 @@ export const Navbar = () => {
     const menuItems = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/blogs">Blogs</Link></li>
+        <li><Link to="/reviews">Reviews</Link></li>
         {/* <li><Link to="/cars">Cars</Link></li> */}
         {
             user?.email ? <>
+                <li><Link to="/my-reviews">My reviews</Link></li>
             </>
                 : <>
+
                     <button className="btn btn-primary "><Link to="/register">register</Link></button>
                     <button className="btn btn-outline rounded-lg"><Link to="/login">Login</Link></button>
                 </>
@@ -90,9 +93,13 @@ export const Navbar = () => {
                                 </Link>
                             </li>
                         }
-                        <li><Link to="/dashboard">Dashboard</Link></li>
+
                         {
-                            user?.uid && <li><Link onClick={handleLogout}>Logout</Link></li>
+                            user?.uid && <>
+                                <li><Link to="/dashboard">Dashboard</Link></li>
+                                <li><Link to="/reviews/add">Add review</Link></li>
+                                <li><Link className='text-error' onClick={handleLogout}>Logout</Link></li>
+                            </>
                         }
                     </ul>
                 </div>
