@@ -160,7 +160,7 @@ export const Process = () => {
                 </div>
                 <div className="relative">
                     <img
-                        className="inset-0 object-cover object-top w-full rounded shadow-lg h-full lg:absolute lg:h-full"
+                        className="inset-0 object-cover object-top w-full rounded shadow-lg h-[60%]  lg:absolute lg:h-full"
                         src="https://cdn.pixabay.com/photo/2019/04/23/05/25/car-4148514_960_720.jpg"
                         alt="process_image"
                     />

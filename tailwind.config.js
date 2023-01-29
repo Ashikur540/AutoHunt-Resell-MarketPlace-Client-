@@ -35,7 +35,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'statesBG': "url('/src/Assets/Images/')",
+        'hero-pattern': "url('/img/hero-pattern.svg')",
+        'statesBG': "url('/src/Assets/Images/car-g94f007c11_1920.jpg')",
       }
     },
   },
