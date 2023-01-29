@@ -28,7 +28,7 @@ const MyReviews = () => {
 
     const { data: myreviews = [], refetch, isLoading } = useQuery({
         queryKey: ['myreviews', user?.email],
-        queryFn: () => fetch(`${process.env.REACT_APP_URL}/reviews?email=${user?.email}`, {
+        queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/reviews?email=${user?.email}`, {
 
             headers: {
                 authorization: `Bearer ${localStorage.getItem('autohunt-token')}`
@@ -43,7 +43,7 @@ const MyReviews = () => {
     const handleDelete = (id) => {
         const consent = window.confirm("are you sure to delete?")
         if (consent) {
-            fetch(`${process.env.REACT_APP_URL}/reviews/${id}`, {
+            fetch(`${process.env.REACT_APP_Base_URL}/reviews/${id}`, {
                 method: "delete",
             })
                 .then(res => res.json())

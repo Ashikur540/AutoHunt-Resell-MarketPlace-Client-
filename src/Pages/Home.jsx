@@ -4,14 +4,16 @@ import { Banner } from '../Components/Banner/Banner'
 import AdvertiseCars from './Advertise page/AdvertiseCars'
 import Category from './Cars/Left category/Category'
 import { Contact } from './Contact/Contact'
+import ReviewSlider from './Review Slider/ReviewSlider'
 
 const Home = () => {
     return (
-        <div>
+        <div className="overflow-x-hidden">
             <Banner />
             <About></About>
             <Category />
             <AdvertiseCars />
+            <ReviewSlider />
             <Contact />
         </div>
     )

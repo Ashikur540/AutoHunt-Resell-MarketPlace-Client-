@@ -6,7 +6,7 @@ const AllReviews = () => {
 
     const { data: allreviews = [], isLoading } = useQuery({
         queryKey: ['allreviews'],
-        queryFn: () => fetch(`${process.env.REACT_APP_URL}/reviews/all`)
+        queryFn: () => fetch(`${process.env.REACT_APP_Base_URL}/reviews/all`)
             .then(res => res.json())
     })
 

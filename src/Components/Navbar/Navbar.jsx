@@ -44,7 +44,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <div className="navbar bg-base-100 md:justify-center sticky top-0 z-10 shadow-base-100 shadow-lg">
+            <div className="navbar bg-base-100 md:justify-center sticky top-0 z-50 shadow-base-100 shadow-md">
                 <div className="navbar-start md:w-full">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">

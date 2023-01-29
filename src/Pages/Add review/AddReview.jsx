@@ -21,7 +21,7 @@ const AddReview = () => {
     const handleAddReview = () => {
         console.log(reviewInfo);
 
-        fetch(`${process.env.REACT_APP_URL}/review/add`, {
+        fetch(`${process.env.REACT_APP_Base_URL}/review/add`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",

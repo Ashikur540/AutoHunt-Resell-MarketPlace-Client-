@@ -11,7 +11,7 @@ export const Banner = () => {
                                 New Collection arrives
                             </p>
                         </div>
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-base-10 sm:text-4xl sm:leading-none md:leading-normal">
+                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white uppercase sm:text-4xl sm:leading-none md:leading-normal">
                             Fullfill
                             <br className="hidden md:block" />
                             Your dream{' '}

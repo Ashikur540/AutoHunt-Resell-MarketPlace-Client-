@@ -27,7 +27,7 @@ const MyCars = () => {
     const { _id, modelName, } = singlecar
     console.log(_id);
     console.log('test...');
-    fetch(`${process.env.REACT_APP_Base_URL}/myCars/${_id}`, {
+    fetch(`http://localhost:5000/myCars/${_id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("autohunt-token")}`
