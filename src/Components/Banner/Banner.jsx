@@ -7,11 +7,11 @@ export const Banner = () => {
                 <div className="mb-16 lg:my-40 lg:max-w-lg lg:pr-5">
                     <div className="max-w-xl mb-6">
                         <div>
-                            <p className="inline-block  py-px mb-4 text-xs font-semibold tracking-wider text-primary uppercase rounded-full bg-teal-accent-400">
+                            <p className="inline-block  py-px mb-4 text-xs font-semibold tracking-wider text-amber-400 uppercase rounded-full bg-teal-accent-400">
                                 New Collection arrives
                             </p>
                         </div>
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-white uppercase sm:text-4xl sm:leading-none md:leading-normal">
+                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-wide text-white uppercase sm:text-4xl sm:leading-none md:leading-normal">
                             Fullfill
                             <br className="hidden md:block" />
                             Your dream{' '}
@@ -30,11 +30,6 @@ export const Banner = () => {
                 </div>
             </div>
             <div className="inset-y-0 right-0 w-full max-w-xl px-4 mx-auto lg:pl-8 lg:pr-0 lg:mb-0 lg:mx-0 lg:w-1/2 lg:max-w-full lg:absolute xl:px-0">
-                {/* <img
-                    className="object-cover w-full h-56 rounded shadow-lg lg:rounded-none lg:shadow-none sm:h-96 lg:h-full"
-                    src={heroImg}
-                    alt=""
-                /> */}
                 <Carousel />
             </div>
         </div >

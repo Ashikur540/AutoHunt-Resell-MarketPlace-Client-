@@ -23,7 +23,7 @@ const Categories = () => {
     return (
         <section id="car-category">
 
-            <p className="text-base-20 text-center text-3xl font-bold">Explore our car categories </p>
+
             <div className="flex  my-10 text-center justify-center items-center bg-base-100 rounded-lg px-14 gap-8">
                 {
                     categories?.map(category => <div className="font-semibold py-3 pl-6 my-1 w-full bg-neutral rounded-md hover:bg-primary hover:text-base-20 duration-150 "

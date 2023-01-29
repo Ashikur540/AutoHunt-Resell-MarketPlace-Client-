@@ -14,6 +14,7 @@ module.exports = {
           "secondary": "#828DF8",
 
           "accent": "#C996CC",
+          "ripeYellow": "#fca311",
 
           "neutral": "#28283C",
 
@@ -32,7 +33,11 @@ module.exports = {
     ],
   },
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'statesBG': "url('/src/Assets/Images/')",
+      }
+    },
   },
   plugins: [require("daisyui")],
 }

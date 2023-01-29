@@ -32,6 +32,10 @@ const Category = () => {
     console.log(categories);
     return (
         <section id="car-category">
+            <div className="mx-auto pt-13">
+                <p className="px-3 py-px mb-4 text-xs font-semibold tracking-wider text-amber-400 uppercase rounded-full  text-center">Categories</p>
+                <h1 className="text-white text-center text-4xl uppercase font-bold">Explore our car categories </h1>
+            </div>
             <div className="flex  my-10 text-center justify-center items-center bg-base-100 rounded-lg px-12 gap-8 flex-grow flex-wrap">
                 {/* {
                     categories?.map(category => <div className="font-semibold mx-auto py-3 pl-6 my-1 w-full bg-neutral rounded-md hover:bg-primary hover:text-base-20 duration-150 "
