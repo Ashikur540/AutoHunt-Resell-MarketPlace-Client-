@@ -1,12 +1,12 @@
 import React from 'react'
 import { About } from '../Components/About/About'
+import Advertise from '../Components/Advertise/Advertise'
 import { Banner } from '../Components/Banner/Banner'
 import { Process } from '../Components/Process/Process'
+import { Specs } from '../Components/Specs/Specs'
 import States from '../Components/Stats/States'
 import Category from './Cars/Left category/Category'
 import { Contact } from './Contact/Contact'
-import ReviewSlider from './Review Slider/ReviewSlider'
-
 const Home = () => {
     return (
         <div className="overflow-x-hidden">
@@ -16,7 +16,9 @@ const Home = () => {
             <Category />
             <Process />
             <States />
-            <ReviewSlider />
+            <Specs />
+            <Advertise />
+            {/* <ReviewSlider /> */}
             <Contact />
         </div>
     )

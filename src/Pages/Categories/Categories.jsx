@@ -26,7 +26,7 @@ const Categories = () => {
 
             <div className="flex  my-10 text-center justify-center items-center bg-base-100 rounded-lg px-14 gap-8">
                 {
-                    categories?.map(category => <div className="font-semibold py-3 pl-6 my-1 w-full bg-neutral rounded-md hover:bg-primary hover:text-base-20 duration-150 "
+                    categories?.map(category => <div className="font-semibold py-3 pl-6 my-1 w-full bg-blackish rounded-md hover:bg-primary hover:text-base-20 duration-150 "
                         key={category._id}
                     >
                         <img src="" alt="" srcset="" />
