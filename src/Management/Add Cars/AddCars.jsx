@@ -20,7 +20,7 @@ const AddCars = () => {
         const formData = new FormData();
         formData.append('image', image);
         // console.log(image);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${process.env.REACT_APP_imgbb_key}`;
+        const url = `https://api.imgbb.com/1/upload?expiration=0&key=${process.env.REACT_APP_imgbb_key}`;
 
 
 

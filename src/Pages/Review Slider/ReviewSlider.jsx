@@ -25,7 +25,8 @@ export default function ReviewSlider() {
     return (
         <>
             {/*<!-- Component: Testimonial slider --> */}
-            <div className="relative max-w-3xl glide-08 mx-auto overflow-x-hidden">
+            <div className="relative max-w-3xl glide-08 mx-auto overflow-x-hidden mt-12">
+                <h1 className="text-4xl text-white font-bold">What clients says</h1>
                 {/*    <!-- Slides --> */}
                 <div
                     className="overflow-hidden text-center bg-neutral rounded  text-slate-300 shadow-slate-200 "

@@ -9,7 +9,7 @@ module.exports = {
         AutoHuntDark: {
 
           // "primary": "#4D2DCA",
-          "primary": "#892CDC",
+          "primary": "#CF253F",
           "blackish": "#0B0E1B",
 
           "secondary": "#828DF8",
@@ -38,6 +38,7 @@ module.exports = {
       backgroundImage: {
         'advertiseBg': "url('/src/Assets/Images/advertise bg.png')",
         'statesBG': "url('/src/Assets/Images/car-g94f007c11_1920.jpg')",
+        'NewsBG': "url('/src/Assets/Images/newsteller.jpg')",
       },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',

@@ -9,6 +9,7 @@ import CarsCard from '../Cars Card/CarsCard';
 const RightCars = () => {
     const [carInfo, setCarInfo] = useState(null)
     const router = useParams();
+    // console.log(router.category_name)
     const { user } = useContext(AuthContext)
     // console.log(router);
     const { category_name } = router;
@@ -52,8 +53,11 @@ const RightCars = () => {
     }
     return (
         <div>
-            <h1 className="text-2xl text-accent font-bold my-2 text-center ">Cars found {availableCars?.length}</h1>
-            <div className="container px-4 m-auto">
+            <div className="min-w-full max-h-fit object-bottom bg-center bg-cover bg-no-repeat" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=798&q=80')` }}>
+
+                <h1 className="text-4xl text-white  font-bold my-2 text-center py-20"><span className="text-primary">{router.category_name}</span> Cars found {availableCars?.length}</h1>
+            </div>
+            <div className="container px-4 m-auto my-14">
                 <div className=" card_grid grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
                     {
                         availableCars?.map(car => <CarsCard

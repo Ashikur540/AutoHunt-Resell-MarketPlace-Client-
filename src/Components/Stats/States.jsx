@@ -11,7 +11,7 @@ const States = () => {
                 <div className="bg-black absolute w-full h-full top-0 opacity-25 "></div>
                 <div className="relative container max-w-5xl mx-auto my-auto pt-12 flex flex-col md:flex-col lg:flex-row xl:flex-row items-center justify-between gap-9 ">
                     <div className=" w-full lg:w-1/2 ">
-                        <h4 className="text-xl font-semibold tracking-normal text-base-20 pl-1">Need a Tutorial</h4>
+                        <h4 className="text-xl font-semibold tracking-normal text-primary pl-1">Need a Tutorial</h4>
                         <h1 className="text-4xl font-bold pt-8 uppercase tracking-wider leading-snug text-white">
                             Save Time & Money with Top Rent Car Service Your Country.
                         </h1>
@@ -19,8 +19,8 @@ const States = () => {
                     </div>
                     <div className="h-full  lg:w-1/2 block md:flex gap-6 mx-auto justify-center items-center">
                         <div className="py-6 px-3 bg-white flex items-center  rounded-md max-w-fit h-fit my-auto ">
-                            <span class="p-3 bg-slate-100 text-4xl rounded-full text-amber-700 ">
-                                <MdOutlinePinDrop className="animate-ping" />
+                            <span class="p-3 bg-slate-100 text-4xl rounded-full text-primary ">
+                                <MdOutlinePinDrop className="animate-pulse" />
                             </span>
                             <div class="">
                                 <h3 class="mb-1"><span class="text-3xl font-bold text-slate-800">
@@ -31,7 +31,7 @@ const States = () => {
                         </div>
                         <div className="flex flex-row lg:flex-col gap-4 flex-wrap pt-2 ">
                             <div className="py-6 px-3 bg-white flex items-center gap-8 rounded-md max-w-fit">
-                                <span class="p-3 bg-slate-100 text-4xl rounded-full text-amber-700">
+                                <span class="p-3 bg-slate-100 text-4xl rounded-full text-primary">
                                     <FaRegHeart className="animate-beat" />
                                 </span>
                                 <div class="">
@@ -42,8 +42,8 @@ const States = () => {
                                 </div>
                             </div>
                             <div className="py-6 px-3 bg-white flex items-center gap-8 rounded-md max-w-fit">
-                                <span class="p-3 bg-slate-100 text-4xl rounded-full text-amber-700">
-                                    <MdOutlineDirectionsCarFilled className="animate-pulse" />
+                                <span class="p-3 bg-slate-100 text-4xl rounded-full text-primary">
+                                    <MdOutlineDirectionsCarFilled className="animate-wiggle" />
                                 </span>
                                 <div className="">
                                     <h3 class="mb-1"><span class="text-3xl font-bold text-slate-800">
