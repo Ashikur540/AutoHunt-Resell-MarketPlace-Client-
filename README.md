@@ -1,130 +1,131 @@
-# [AutoHunt](https://autohunt-f5b1c.web.app/)
+<div align="center">
 
-## 💡Features:
+# AutoHunt
 
-##### User/Buyer Side:
+**A used-car marketplace where sellers list cars, buyers pay online, and admins keep it safe.**
 
-- Log in , resgistration ,authentication.
-- users can see different cars category.
-- Logged user can see available cars.
-- user / buyer can purchase a product through payment (stripe).
-- user can report any car item.
-- User can see his purchaselist in dashboard can delete any of them .
-- Authorization (JWT)
+<p>
+  <a href="https://autohunt-f5b1c.web.app/"><strong>Live site</strong></a> ·
+  <a href="https://github.com/Ashikur540/AutoHunt-server">Server repo</a> ·
+  <a href="#run-it-locally">Run it locally</a>
+</p>
 
-##### Seller Side:
+<p>
+  <img alt="React" src="https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white" />
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-Express-339933?logo=node.js&logoColor=white" />
+  <img alt="MongoDB" src="https://img.shields.io/badge/MongoDB-Atlas-47A248?logo=mongodb&logoColor=white" />
+  <img alt="Stripe" src="https://img.shields.io/badge/Stripe-payments-635BFF?logo=stripe&logoColor=white" />
+  <img alt="JWT" src="https://img.shields.io/badge/Auth-JWT%20%2B%20Firebase-000000?logo=jsonwebtokens&logoColor=white" />
+</p>
 
-- can add any cars to system.
-- Can see his added cars .
-- can delete them if want.
-- Authorization (JWT)
+<img src="./.github/assets/home.jpg" alt="AutoHunt home page" width="100%" />
 
-##### Admin Side:
+</div>
 
-- Can see all users.
-- Can make someone admin.
-- Can verify any seller.
-- Can Manage Buyers and seller like (delete them)
-- Can see all the reported items
-- Authorization (JWT)
+> **Note:** the live site's API is offline right now, so car listings and
+> sign-in do not load. The code runs locally with your own MongoDB and Stripe
+> test keys (see below).
 
-## Technology:
+## What it does
 
-##### FrontEnd:
+Buying a second-hand car online is risky: you don't know who the seller is,
+and paying a stranger feels unsafe. AutoHunt has three kinds of users, each
+with their own dashboard:
 
-- React
-- React router.
-- Tailwind
-- daisy UI.
+- **Buyers** browse cars by category, book one, pay by card through Stripe,
+  see their purchases, and report a suspicious listing.
+- **Sellers** add cars with photos, see their listings and remove sold ones.
+  An admin can mark a seller as **verified**.
+- **Admins** see all buyers and sellers, make other users admin, verify
+  sellers, delete accounts, and review reported cars.
 
-### backend
+**Example:** a seller lists a 2018 Corolla. A buyer finds it in its category,
+pays through Stripe, and it moves to their purchase list. If something looks
+wrong, the buyer reports it, and the admin sees it in **All Reports**.
 
-- Node js.
-- Express Js.
-- Mongo db for data cloud.
-- Dot env.
-- JWT for Authorization
+## How it is built
 
-## TEST ACCOUNTS:
+A MERN app split into two repos: this React client and an
+[Express API](https://github.com/Ashikur540/AutoHunt-server).
 
-###### ADMIN:
+```
+React client (Firebase Hosting)
+  ├─ Firebase Auth ─► sign in (email or Google)
+  ├─ GET /jwt ──────► API returns a signed token
+  └─ fetch + TanStack Query, token in the Authorization header
+        │
+Express API (Vercel)
+  ├─ verifyJWT ─────► every private route
+  ├─ verifyAdmin / verifySeller ─► role-only routes
+  ├─ MongoDB Atlas ─► users, cars, purchases, reports, reviews
+  └─ Stripe ────────► /create-payment-intent, /payments
+```
 
-email=spiderman@gmail.com
-pass=aaaaaaaaA1
+- **Role-based access on both sides**: the client has `PrivateRoute`,
+  `AdminRoute` and `SellerRoute`; the server checks the token and the user's
+  role from the database, so hiding a button is never the only guard.
+- **Payments** use Stripe Payment Intents: the server creates the intent with
+  the secret key; the browser only ever sees the publishable key.
+- **Data fetching** with TanStack Query, forms with react-hook-form, car
+  photos uploaded to imgbb.
 
-###### Seller
+| Part   | Tech                                                         |
+| ------ | ------------------------------------------------------------ |
+| Client | React 18, React Router 6, TanStack Query, Tailwind CSS, daisyUI |
+| Auth   | Firebase Authentication + JWT                                |
+| Server | Node.js, Express, MongoDB driver                             |
+| Payments | Stripe (Payment Intents, React Stripe.js)                  |
+| Hosting | Firebase Hosting (client), Vercel (server)                  |
 
-email=leonelmessi@gmail.com
-password=aaaaaaaaA1
+## Run it locally
 
-###### Buyer/User
+You need Node.js 18+, a MongoDB Atlas cluster, a Firebase project, a Stripe
+account (test mode is fine) and an imgbb API key.
 
-email=normaluser@gmail.com
-pass=aaaaaaaaA1
+**1. Start the server**
 
-## Available Scripts
+```bash
+git clone https://github.com/Ashikur540/AutoHunt-server.git
+cd AutoHunt-server
+npm install
+```
 
-In the project directory, you can run:
+Create `.env`:
 
-### `npm start`
+```
+DB_USER=your-atlas-user
+DB_USER_PASS=your-atlas-password
+ACCESS_TOKEN_SECRET=any-long-random-string
+STRIPE_SECRET=sk_test_...
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Then run `node index.js`. The API listens on <http://localhost:5000>.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**2. Start the client**
 
-### `npm test`
+```bash
+git clone https://github.com/Ashikur540/AutoHunt-Resell-MarketPlace-Client-.git
+cd AutoHunt-Resell-MarketPlace-Client-
+npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Create `.env.local`:
 
-### `npm run build`
+```
+REACT_APP_Base_URL=http://localhost:5000
+REACT_APP_apiKey=...
+REACT_APP_authDomain=...
+REACT_APP_projectId=...
+REACT_APP_storageBucket=...
+REACT_APP_messagingSenderId=...
+REACT_APP_appId=...
+REACT_APP_imgbb_key=...
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then run `npm start` and open <http://localhost:3000>.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Author
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built by **Ashikur Rahman**, a frontend-focused full-stack developer.
+[GitHub](https://github.com/Ashikur540) ·
+[LinkedIn](https://linkedin.com/in/md-ashikurrahman)
